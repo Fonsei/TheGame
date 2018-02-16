@@ -198,6 +198,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\TheGame\Player.cshtml" />
     <Content Include="Views\TheGame\CreatePlayer.cshtml" />
+    <Content Include="Views\TheGame\PlayerDetails.cshtml" />
+    <Content Include="Views\TheGame\PlayerCharDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

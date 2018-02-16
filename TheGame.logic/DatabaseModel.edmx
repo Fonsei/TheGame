@@ -123,7 +123,7 @@ warning 6002: The table/view 'MmorpgTheGame.dbo.BenutzerSettings' does not have 
         </EntityType>
         <EntityType Name="BenutzerProfil">
           <Key>
-            <PropertyRef Name="IDProfil" />
+            <PropertyRef Name="ID" />
             <PropertyRef Name="FKBenutzer" />
             <PropertyRef Name="CharcterName" />
             <PropertyRef Name="Prefabname" />
@@ -131,7 +131,7 @@ warning 6002: The table/view 'MmorpgTheGame.dbo.BenutzerSettings' does not have 
             <PropertyRef Name="BottomName" />
             <PropertyRef Name="ShoesName" />
           </Key>
-          <Property Name="IDProfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FKBenutzer" Type="Int32" Nullable="false" />
           <Property Name="CharcterName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Prefabname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -179,11 +179,11 @@ warning 6002: The table/view 'MmorpgTheGame.dbo.BenutzerSettings' does not have 
         </Association>
         <EntityContainer Name="MmorpgTheGameEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AlleBenutzer" EntityType="Self.Benutzer" />
-          <EntitySet Name="BenutzerProfil" EntityType="Self.BenutzerProfil" />
+          <EntitySet Name="AlleBenutzerProfile" EntityType="Self.BenutzerProfil" />
           <EntitySet Name="BenutzerSettings" EntityType="Self.BenutzerSettings" />
           <AssociationSet Name="FK__BenutzerP__FKBen__276EDEB3" Association="Self.FK__BenutzerP__FKBen__276EDEB3">
             <End Role="Benutzer" EntitySet="AlleBenutzer" />
-            <End Role="BenutzerProfil" EntitySet="BenutzerProfil" />
+            <End Role="BenutzerProfil" EntitySet="AlleBenutzerProfile" />
           </AssociationSet>
           <AssociationSet Name="FK__BenutzerS__IDSet__25869641" Association="Self.FK__BenutzerS__IDSet__25869641">
             <End Role="Benutzer" EntitySet="AlleBenutzer" />
@@ -207,10 +207,10 @@ warning 6002: The table/view 'MmorpgTheGame.dbo.BenutzerSettings' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BenutzerProfil">
+          <EntitySetMapping Name="AlleBenutzerProfile">
             <EntityTypeMapping TypeName="MmorpgTheGameModel.BenutzerProfil">
               <MappingFragment StoreEntitySet="BenutzerProfil">
-                <ScalarProperty Name="IDProfil" ColumnName="IDProfil" />
+                <ScalarProperty Name="ID" ColumnName="IDProfil" />
                 <ScalarProperty Name="FKBenutzer" ColumnName="FKBenutzer" />
                 <ScalarProperty Name="CharcterName" ColumnName="CharcterName" />
                 <ScalarProperty Name="Prefabname" ColumnName="Prefabname" />

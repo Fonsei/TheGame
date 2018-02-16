@@ -26,7 +26,7 @@ namespace TheGame.logic
         }
     
         public virtual DbSet<Benutzer> AlleBenutzer { get; set; }
-        public virtual DbSet<BenutzerProfil> BenutzerProfil { get; set; }
+        public virtual DbSet<BenutzerProfil> AlleBenutzerProfile { get; set; }
         public virtual DbSet<BenutzerSettings> BenutzerSettings { get; set; }
     }
 }

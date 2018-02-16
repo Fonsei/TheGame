@@ -14,7 +14,7 @@ namespace TheGame.logic
     
     public partial class BenutzerProfil
     {
-        public int IDProfil { get; set; }
+        public int ID { get; set; }
         public int FKBenutzer { get; set; }
         public string CharcterName { get; set; }
         public string Prefabname { get; set; }

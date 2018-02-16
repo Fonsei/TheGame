@@ -11,6 +11,8 @@ namespace TheGame.web.Controllers
 {
     public class TheGameController : Controller
     {
+        List<Benutzer> AlleBenutzer = new List<Benutzer>();
+
         // GET: TheGame
         public ActionResult Index()
         {
@@ -23,18 +25,55 @@ namespace TheGame.web.Controllers
             Debug.WriteLine("GET - TheGameController - Player");
             Debug.Indent();
             List<PlayerModel> model = new List<PlayerModel>();
-            List<Benutzer> allebenutzer = TheGameVerwaltung.AlleCLient();
-            foreach (var spieler in allebenutzer)
+            AlleBenutzer = TheGameVerwaltung.AlleCLient();
+            List<BenutzerProfil> alleBenutzerProfile = null;
+            foreach (var spieler in AlleBenutzer)
             {
+                alleBenutzerProfile = TheGameVerwaltung.AlleProfile(spieler.ID);
+
                 PlayerModel player = new PlayerModel();
+                player.ID = spieler.ID;
                 player.PlayerName = spieler.Username;
                 player.Email = spieler.Email;
                 player.IsFreigeschalten = (bool)spieler.IstFreigeschalten;
+                player.Profile = alleBenutzerProfile;
                 model.Add(player);
             }
 
             Debug.Unindent();
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult PlayerDetails(int id)
+        {
+            Debug.WriteLine("GET - TheGameController - PlayerDetails");
+            Debug.Indent();
+
+            List<BenutzerProfil> alleBenutzerProfile = TheGameVerwaltung.AlleProfile(id);
+            Benutzer spieler = TheGameVerwaltung.AktClient(id);
+            PlayerModel model = new PlayerModel();
+            model.ID = spieler.ID;
+            model.PlayerName = spieler.Username;
+            model.Email = spieler.Email;
+            model.IsFreigeschalten = (bool)spieler.IstFreigeschalten;
+            model.Profile = alleBenutzerProfile;
+
+            Debug.Unindent();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult PlayerCharDetails(string name)
+        {
+            Debug.WriteLine("GET - TheGameController - PlayerCharDetails");
+            Debug.Indent();
+            BenutzerProfil aktprofil = new BenutzerProfil();
+
+            aktprofil = TheGameVerwaltung.AktuellesProfile(name);
+
+            Debug.Unindent();
+            return View(aktprofil);
         }
 
         [HttpGet]

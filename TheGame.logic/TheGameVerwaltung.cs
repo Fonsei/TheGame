@@ -36,7 +36,31 @@ namespace TheGame.logic
             return daten;
         }
 
+        public static List<BenutzerProfil> AlleProfile(int id)
+        {
+            Debug.WriteLine("TheGameVerwaltung - AlleProfile");
+            Debug.Indent();
+            List<BenutzerProfil> daten = new List<BenutzerProfil>();
 
+            try
+            {
+                using (var context = new MmorpgTheGameEntities())
+                {
+                    daten = context.AlleBenutzerProfile.Where(x => x.FKBenutzer == id).ToList();
+                    Debug.WriteLine(daten.Count + " BenutzerProfile Gefunden");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine("Fehler - AlleProfile");
+                Debug.WriteLine(ex);
+                Debugger.Break();
+            }
+
+            Debug.Unindent();
+            return daten;
+        }   
 
         public static Benutzer AktClient(string username)
         {
@@ -63,6 +87,60 @@ namespace TheGame.logic
             
             Debug.Unindent();
             return cl;
+        }
+
+        public static BenutzerProfil AktuellesProfile(string name)
+        {
+            Debug.WriteLine("TheGameVerwaltung - AktuellesProfile");
+            Debug.Indent();
+            BenutzerProfil profil = new BenutzerProfil();
+
+            try
+            {
+                using (var context = new MmorpgTheGameEntities())
+                {
+                    profil = context.AlleBenutzerProfile.Where(m => m.CharcterName == name).FirstOrDefault();
+                    if (profil != null)
+                        Debug.WriteLine("BenutzerProfil Gefunden");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine("Fehler - AktuellesProfile");
+                Debug.WriteLine(ex);
+                Debugger.Break();
+            }
+
+            Debug.Unindent();
+            return profil;
+        }
+
+        public static Benutzer AktClient(int id)
+        {
+            Debug.WriteLine("TheGameVerwaltung - AktClient");
+            Debug.Indent();
+            Benutzer benutzer = new Benutzer();
+
+            try
+            {
+                using (var context = new MmorpgTheGameEntities())
+                {
+                    benutzer = context.AlleBenutzer.Where(m => m.ID == id).FirstOrDefault();
+                    if (benutzer != null)
+                        Debug.WriteLine("Benutzer Gefunden");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine("Fehler - AktClient");
+                Debug.WriteLine(ex);
+                Debugger.Break();
+            }
+
+            Debug.Unindent();
+            return benutzer;
         }
 
         public static Benutzer AktClient(string username,string email)

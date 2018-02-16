@@ -1,0 +1,72 @@
+﻿@model TheGame.web.Models.PlayerModel
+
+@{
+    ViewBag.Title = "PlayerDetails";
+}
+
+<h2>PlayerDetails</h2>
+
+<div>
+    <h4>PlayerModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlayerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFreigeschalten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsFreigeschalten)
+        </dd>*@
+
+        @foreach (var profil in Model.Profile)
+        {
+            <dt>Char @Html.DisplayNameFor(model => profil.ID)</dt>
+            <dd>@Html.DisplayFor(model => profil.ID)</dd>
+            <dt>@Html.DisplayNameFor(model => profil.CharcterName)</dt>
+            <dd>@Html.DisplayFor(model => profil.CharcterName)</dd>
+            <dt>@Html.DisplayNameFor(model => profil.Prefabname)</dt>
+            <dd>@Html.DisplayFor(model => profil.Prefabname)</dd>
+            <dt></dt>
+            <dd>@Html.ActionLink("Details", "PlayerCharDetails", new { name = profil.CharcterName })</dd>
+        }
+
+    </dl>
+
+    
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+    @Html.ActionLink("Zurück zu Alle Spieler", "Player")
+</p>

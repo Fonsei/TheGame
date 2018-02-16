@@ -1,0 +1,74 @@
+﻿@model TheGame.logic.BenutzerProfil
+
+@{
+    ViewBag.Title = "PlayerCharDetails";
+}
+
+<h2>PlayerCharDetails</h2>
+
+<div>
+    <h4>BenutzerProfil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FKBenutzer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FKBenutzer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharcterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharcterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prefabname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prefabname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BottomName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BottomName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShoesName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShoesName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastPlay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastPlay)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+    @Html.ActionLink("Zurück zu Alle Spieler", "Player")
+</p>

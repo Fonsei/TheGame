@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using TheGame.logic;
 
 namespace TheGame.web.Models
 {
     public class PlayerModel
     {
+        public int ID { get; set; }
+
         [Required]
         [Display(Name = "Username")]
         public string PlayerName { get; set; }
@@ -27,5 +30,7 @@ namespace TheGame.web.Models
         public string Password2 { get; set; }
 
         public bool IsFreigeschalten { get; set; }
-    }
+
+        public List<BenutzerProfil> Profile { get; set; }
+}
 }
