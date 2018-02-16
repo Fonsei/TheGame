@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MmorpgTheGameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="IDClient" />
+          </Key>
+          <Property Name="IDClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" />
+          <Property Name="Passwort" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="IstFreigeschalten" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MmorpgTheGame.dbo.BenutzerProfil' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BenutzerProfil">
+          <Key>
+            <PropertyRef Name="IDProfil" />
+            <PropertyRef Name="FKBenutzer" />
+            <PropertyRef Name="CharcterName" />
+            <PropertyRef Name="Prefabname" />
+            <PropertyRef Name="TopName" />
+            <PropertyRef Name="BottomName" />
+            <PropertyRef Name="ShoesName" />
+          </Key>
+          <Property Name="IDProfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKBenutzer" Type="int" Nullable="false" />
+          <Property Name="CharcterName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Prefabname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TopName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="BottomName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ShoesName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastPlay" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MmorpgTheGame.dbo.BenutzerSettings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BenutzerSettings">
+          <Key>
+            <PropertyRef Name="Audio" />
+            <PropertyRef Name="Graphic" />
+            <PropertyRef Name="Resoultion" />
+          </Key>
+          <Property Name="IDSettings" Type="int" />
+          <Property Name="Audio" Type="float" Nullable="false" />
+          <Property Name="Graphic" Type="int" Nullable="false" />
+          <Property Name="Resoultion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BenutzerP__FKBen__276EDEB3">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="1" />
+          <End Role="BenutzerProfil" Type="Self.BenutzerProfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="IDClient" />
+            </Principal>
+            <Dependent Role="BenutzerProfil">
+              <PropertyRef Name="FKBenutzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BenutzerS__IDSet__25869641">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="0..1" />
+          <End Role="BenutzerSettings" Type="Self.BenutzerSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="IDClient" />
+            </Principal>
+            <Dependent Role="BenutzerSettings">
+              <PropertyRef Name="IDSettings" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MmorpgTheGameModelStoreContainer">
+          <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BenutzerProfil" EntityType="Self.BenutzerProfil" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BenutzerProfil].[IDProfil] AS [IDProfil], 
+    [BenutzerProfil].[FKBenutzer] AS [FKBenutzer], 
+    [BenutzerProfil].[CharcterName] AS [CharcterName], 
+    [BenutzerProfil].[Prefabname] AS [Prefabname], 
+    [BenutzerProfil].[TopName] AS [TopName], 
+    [BenutzerProfil].[BottomName] AS [BottomName], 
+    [BenutzerProfil].[ShoesName] AS [ShoesName], 
+    [BenutzerProfil].[LastPlay] AS [LastPlay]
+    FROM [dbo].[BenutzerProfil] AS [BenutzerProfil]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BenutzerSettings" EntityType="Self.BenutzerSettings" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BenutzerSettings].[IDSettings] AS [IDSettings], 
+    [BenutzerSettings].[Audio] AS [Audio], 
+    [BenutzerSettings].[Graphic] AS [Graphic], 
+    [BenutzerSettings].[Resoultion] AS [Resoultion]
+    FROM [dbo].[BenutzerSettings] AS [BenutzerSettings]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__BenutzerP__FKBen__276EDEB3" Association="Self.FK__BenutzerP__FKBen__276EDEB3">
+            <End Role="Benutzer" EntitySet="Benutzer" />
+            <End Role="BenutzerProfil" EntitySet="BenutzerProfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BenutzerS__IDSet__25869641" Association="Self.FK__BenutzerS__IDSet__25869641">
+            <End Role="Benutzer" EntitySet="Benutzer" />
+            <End Role="BenutzerSettings" EntitySet="BenutzerSettings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MmorpgTheGameModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Passwort" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IstFreigeschalten" Type="Boolean" />
+          <NavigationProperty Name="BenutzerProfil" Relationship="Self.FK__BenutzerP__FKBen__276EDEB3" FromRole="Benutzer" ToRole="BenutzerProfil" />
+          <NavigationProperty Name="BenutzerSettings" Relationship="Self.FK__BenutzerS__IDSet__25869641" FromRole="Benutzer" ToRole="BenutzerSettings" />
+        </EntityType>
+        <EntityType Name="BenutzerProfil">
+          <Key>
+            <PropertyRef Name="IDProfil" />
+            <PropertyRef Name="FKBenutzer" />
+            <PropertyRef Name="CharcterName" />
+            <PropertyRef Name="Prefabname" />
+            <PropertyRef Name="TopName" />
+            <PropertyRef Name="BottomName" />
+            <PropertyRef Name="ShoesName" />
+          </Key>
+          <Property Name="IDProfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKBenutzer" Type="Int32" Nullable="false" />
+          <Property Name="CharcterName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prefabname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TopName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BottomName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShoesName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastPlay" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Benutzer" Relationship="Self.FK__BenutzerP__FKBen__276EDEB3" FromRole="BenutzerProfil" ToRole="Benutzer" />
+        </EntityType>
+        <EntityType Name="BenutzerSettings">
+          <Key>
+            <PropertyRef Name="Audio" />
+            <PropertyRef Name="Graphic" />
+            <PropertyRef Name="Resoultion" />
+          </Key>
+          <Property Name="IDSettings" Type="Int32" />
+          <Property Name="Audio" Type="Double" Nullable="false" />
+          <Property Name="Graphic" Type="Int32" Nullable="false" />
+          <Property Name="Resoultion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Benutzer" Relationship="Self.FK__BenutzerS__IDSet__25869641" FromRole="BenutzerSettings" ToRole="Benutzer" />
+        </EntityType>
+        <Association Name="FK__BenutzerP__FKBen__276EDEB3">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="1" />
+          <End Role="BenutzerProfil" Type="Self.BenutzerProfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BenutzerProfil">
+              <PropertyRef Name="FKBenutzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BenutzerS__IDSet__25869641">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="0..1" />
+          <End Role="BenutzerSettings" Type="Self.BenutzerSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BenutzerSettings">
+              <PropertyRef Name="IDSettings" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MmorpgTheGameEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlleBenutzer" EntityType="Self.Benutzer" />
+          <EntitySet Name="BenutzerProfil" EntityType="Self.BenutzerProfil" />
+          <EntitySet Name="BenutzerSettings" EntityType="Self.BenutzerSettings" />
+          <AssociationSet Name="FK__BenutzerP__FKBen__276EDEB3" Association="Self.FK__BenutzerP__FKBen__276EDEB3">
+            <End Role="Benutzer" EntitySet="AlleBenutzer" />
+            <End Role="BenutzerProfil" EntitySet="BenutzerProfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BenutzerS__IDSet__25869641" Association="Self.FK__BenutzerS__IDSet__25869641">
+            <End Role="Benutzer" EntitySet="AlleBenutzer" />
+            <End Role="BenutzerSettings" EntitySet="BenutzerSettings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MmorpgTheGameModelStoreContainer" CdmEntityContainer="MmorpgTheGameEntities">
+          <EntitySetMapping Name="AlleBenutzer">
+            <EntityTypeMapping TypeName="MmorpgTheGameModel.Benutzer">
+              <MappingFragment StoreEntitySet="Benutzer">
+                <ScalarProperty Name="ID" ColumnName="IDClient" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Passwort" ColumnName="Passwort" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IstFreigeschalten" ColumnName="IstFreigeschalten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BenutzerProfil">
+            <EntityTypeMapping TypeName="MmorpgTheGameModel.BenutzerProfil">
+              <MappingFragment StoreEntitySet="BenutzerProfil">
+                <ScalarProperty Name="IDProfil" ColumnName="IDProfil" />
+                <ScalarProperty Name="FKBenutzer" ColumnName="FKBenutzer" />
+                <ScalarProperty Name="CharcterName" ColumnName="CharcterName" />
+                <ScalarProperty Name="Prefabname" ColumnName="Prefabname" />
+                <ScalarProperty Name="TopName" ColumnName="TopName" />
+                <ScalarProperty Name="BottomName" ColumnName="BottomName" />
+                <ScalarProperty Name="ShoesName" ColumnName="ShoesName" />
+                <ScalarProperty Name="LastPlay" ColumnName="LastPlay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BenutzerSettings">
+            <EntityTypeMapping TypeName="MmorpgTheGameModel.BenutzerSettings">
+              <MappingFragment StoreEntitySet="BenutzerSettings">
+                <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
+                <ScalarProperty Name="Audio" ColumnName="Audio" />
+                <ScalarProperty Name="Graphic" ColumnName="Graphic" />
+                <ScalarProperty Name="Resoultion" ColumnName="Resoultion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

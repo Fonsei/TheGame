@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheGame.web", "TheGame.web\TheGame.web.csproj", "{E74A4762-7DC1-4DB1-A640-295E32A38929}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheGame.logic", "TheGame.logic\TheGame.logic.csproj", "{8A6C84E3-A737-4624-9F2C-7EDB99516CBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E74A4762-7DC1-4DB1-A640-295E32A38929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E74A4762-7DC1-4DB1-A640-295E32A38929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E74A4762-7DC1-4DB1-A640-295E32A38929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E74A4762-7DC1-4DB1-A640-295E32A38929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A6C84E3-A737-4624-9F2C-7EDB99516CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A6C84E3-A737-4624-9F2C-7EDB99516CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A6C84E3-A737-4624-9F2C-7EDB99516CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A6C84E3-A737-4624-9F2C-7EDB99516CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC26CDCA-113A-493A-8F0E-E888997B167E}
+	EndGlobalSection
+EndGlobal
